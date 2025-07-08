@@ -1,0 +1,19 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: meu_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB:   estacionamento
+      POSTGRES_USER: usuario_aplicacao
+      POSTGRES_PASSWORD: p0o9i8u7
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
+    driver: local
