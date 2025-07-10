@@ -1,0 +1,11 @@
+FROM maven:3.9.8-amazoncorretto-11
+
+WORKDIR /aplicacao
+
+COPY pom.xml .
+
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
+CMD [ "mvn", "spring-boot:run","-Dspring.profiles.active=homol" ]

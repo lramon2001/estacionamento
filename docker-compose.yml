@@ -1,19 +1,88 @@
 version: "3.9"
 
 services:
-  postgres:
+  banco_de_dados_prod:
     image: postgres:17
-    container_name: meu_postgres
+    container_name: banco_de_dados_prod
     restart: unless-stopped
-    environment:
-      POSTGRES_DB:   estacionamento
-      POSTGRES_USER: usuario_aplicacao
-      POSTGRES_PASSWORD: p0o9i8u7
+    env_file:
+      - ./bancos_de_dados_prod/.env
     ports:
       - "5432:5432"
+    networks:
+      - rede-aplicacao
     volumes:
-      - db-data:/var/lib/postgresql/data
+      - db-data_1:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
+  banco_de_dados_homol:
+    image: postgres:17
+    container_name: banco_de_dados_homol
+    restart: unless-stopped
+    env_file:
+      - ./bancos_de_dados_homol/.env
+    ports:
+      - "5433:5432"
+    networks:
+      - rede-aplicacao
+    volumes:
+      - db-data_2:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  
+  app-dev:
+    build:
+      context: ./aplicacao
+      dockerfile: Dockerfile.dev
+    env_file:
+      - ./aplicacao/env/dev.env
+    ports:
+      - 9091:9091
+    networks:
+      - rede-aplicacao
+    volumes:
+      - ./aplicacao:/aplicacao
+  app-homol:
+    build:
+      context: ./aplicacao
+      dockerfile: Dockerfile.homol
+    env_file:
+      - ./aplicacao/env/homol.env
+    ports:
+      - 9092:9092
+    networks:
+      - rede-aplicacao
+    volumes:
+      - ./aplicacao:/aplicacao
+    depends_on:
+      banco_de_dados_homol:
+        condition: service_healthy
+    
+  app-prod:
+    build:
+      context: ./aplicacao
+      dockerfile: Dockerfile.prod
+    env_file:
+      - ./aplicacao/env/prod.env
+    ports:
+      - 9093:9093
+    networks:
+      - rede-aplicacao
+    depends_on:
+      banco_de_dados_prod:
+        condition: service_healthy
+    
+
+networks:
+  rede-aplicacao:
+    driver: bridge
 volumes:
-  db-data:
-    driver: local
+  db-data_1:
+  db-data_2:

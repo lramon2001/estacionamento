@@ -133,7 +133,9 @@ public class ServicoDeUsuario
     public void cadastrarUsuarioRaiz(){
          if(this.verificarSeTabelaDeUsuariosEstaVazia()){
             try {
-                this.cadastrarUsuarioCasoDeUso.executar(configuracoesDeUsuarioRaiz.novoUsuarioRaiz());
+                Usuario usuario = configuracoesDeUsuarioRaiz.novoUsuarioRaiz();
+                usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha()));
+                this.cadastrarUsuarioCasoDeUso.executar();
             } catch (Exception e) {
             e.printStackTrace();
             }

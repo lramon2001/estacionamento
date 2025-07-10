@@ -1,0 +1,17 @@
+FROM maven:3.9.8-amazoncorretto-11 AS builder
+
+WORKDIR /aplicacao
+
+COPY pom.xml .
+
+COPY src ./src
+
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:11-jre-alpine AS runner
+
+WORKDIR /aplicacao
+
+COPY --from=builder /aplicacao/target/*.jar estacionamento.jar
+
+CMD ["java","-Dspring.profiles.active=prod", "-jar", "estacionamento.jar"]
