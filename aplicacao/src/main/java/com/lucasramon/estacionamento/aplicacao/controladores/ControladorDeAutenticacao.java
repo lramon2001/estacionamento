@@ -38,7 +38,6 @@ public class ControladorDeAutenticacao {
 
     @PostMapping(value = "/registrar",consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
     public ResponseEntity<Void> registrar(@RequestBody @Valid UsuarioRequisicao dto) {
-        System.out.println(dto.toString());
         servicoDeUsuario.cadastrar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

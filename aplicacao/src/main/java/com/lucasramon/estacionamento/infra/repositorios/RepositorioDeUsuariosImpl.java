@@ -36,7 +36,6 @@ public class RepositorioDeUsuariosImpl implements RepositorioDeUsuarios  {
             throw new IllegalArgumentException("Senha não pode ser vazia.");
         }
 
-        System.out.println(mapeador.paraEsquema(entidade).toString());
         jpaRepository.save(mapeador.paraEsquema(entidade));
     }
 

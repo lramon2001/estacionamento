@@ -56,7 +56,6 @@ public class ServicoDeUsuario
 
     @Override
     public void cadastrar(UsuarioRequisicao input) {
-        System.out.println(input.toString());
         try {
             input.setSenha(
                     this.passwordEncoder.encode(input.getSenha()));
@@ -134,7 +133,8 @@ public class ServicoDeUsuario
          if(this.verificarSeTabelaDeUsuariosEstaVazia()){
             try {
                 Usuario usuario = configuracoesDeUsuarioRaiz.novoUsuarioRaiz();
-                usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha()));
+                usuario.setNomeDeUsuario(usuario.getNomeDeUsuario().trim());
+                usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha().trim()));
                 this.cadastrarUsuarioCasoDeUso.executar(usuario);
             } catch (Exception e) {
             e.printStackTrace();
