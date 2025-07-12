@@ -16,7 +16,6 @@ import com.lucasramon.estacionamento.aplicacao.util.ConstantesDaAplicacao;
 
 @RestController
 @RequestMapping(ConstantesDaAplicacao.ROTA_PAINEL)
-@PreAuthorize("hasRole('ADMINISTRADOR')")
 @CrossOrigin(origins = "*", allowedHeaders = "*", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE })
 public class ControladorDoPainel {
 
