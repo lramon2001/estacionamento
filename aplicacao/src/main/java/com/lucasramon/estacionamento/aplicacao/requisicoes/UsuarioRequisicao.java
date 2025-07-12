@@ -22,6 +22,6 @@ public class UsuarioRequisicao {
     String senha;
     @NotBlank
     String email;
-    @NotBlank
+    
     Regra regra;
 }
