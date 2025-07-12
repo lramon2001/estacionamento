@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AcessoRequisicao {
     Long id;
-    @NotBlank
     LocalDateTime dataHora;
     @NotBlank
     String placaVeiculo;

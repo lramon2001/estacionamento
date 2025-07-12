@@ -32,7 +32,6 @@ public class AcessoEsquema {
     private Long id;
 
     @Column(name = "data_hora", nullable = false)
-    @NotBlank
     private LocalDateTime dataHora;
 
     @Column(name = "placa_veiculo", length = 10, nullable = false)
