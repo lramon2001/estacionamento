@@ -1,19 +1,28 @@
 package com.lucasramon.estacionamento.infra.seguranca.jwt;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-
+@Component
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
 public class ConfiguracoesVariaviesJwt {
     
     @Value("${jwt.secret}")
-    public static String segredoJwt;
+    private  String segredoJwt;
 
     @Value("${jwt.expiration}")
-    public static Long tempoExpiracaoJwt;
+    private  Long tempoExpiracaoJwt;
 
     @Value("${jwt.refreshSecret}")
-    public static String segredoAtualizacaoJwt;
+    private  String segredoAtualizacaoJwt;
 
     @Value("${jwt.refreshExpiration}")
-    public static Long tempoExpiracaoAtualizacaoJwt;
+    private  Long tempoExpiracaoAtualizacaoJwt;
 }

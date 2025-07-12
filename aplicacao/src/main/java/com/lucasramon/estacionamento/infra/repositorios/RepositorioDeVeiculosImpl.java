@@ -1,6 +1,7 @@
 package com.lucasramon.estacionamento.infra.repositorios;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
 
@@ -8,24 +9,26 @@ import com.lucasramon.estacionamento.dominio.entidades.veiculo.Veiculo;
 import com.lucasramon.estacionamento.dominio.entidades.veiculo.VeiculoMensalista;
 import com.lucasramon.estacionamento.dominio.repositorios.RepositorioDeVeiculos;
 import com.lucasramon.estacionamento.infra.esquemas.VeiculoEsquema;
-import com.lucasramon.estacionamento.infra.repositorios.jpa.VeiculoJpaRepository;
+import com.lucasramon.estacionamento.infra.mapeadores.MapeadorDeVeiculo;
+import com.lucasramon.estacionamento.infra.repositorios.jpa.VeiculoJpaRepositorio;
 
 @Repository  
 public class RepositorioDeVeiculosImpl implements RepositorioDeVeiculos {
 
-     private final VeiculoJpaRepository jpaRepository;
-    private final ModelMapper modelMapper;
+     private final VeiculoJpaRepositorio jpaRepository;
 
-    public RepositorioDeVeiculosImpl(VeiculoJpaRepository jpaRepository, ModelMapper modelMapper) {
+     @Autowired
+     private MapeadorDeVeiculo mapeadorDeVeiculo;
+
+    public RepositorioDeVeiculosImpl(VeiculoJpaRepositorio jpaRepository) {
         this.jpaRepository = jpaRepository;
-        this.modelMapper = modelMapper;
     }
 
     @Override
     public Veiculo buscarPorId(String placa) {
         VeiculoEsquema entity = jpaRepository.findById(placa)
                 .orElseThrow(() -> new IllegalArgumentException("Veículo não encontrado com placa: " + placa));
-        return modelMapper.map(entity, Veiculo.class);
+        return mapeadorDeVeiculo.paraEntidade(entity);
     }
 
     @Override
@@ -48,7 +51,7 @@ public class RepositorioDeVeiculosImpl implements RepositorioDeVeiculos {
         if (!jpaRepository.existsById(placa)) {
             throw new IllegalArgumentException("Veículo com placa " + placa + " não encontrado.");
         }
-        jpaRepository.save(modelMapper.map(veiculo, VeiculoEsquema.class));
+        jpaRepository.save(this.mapeadorDeVeiculo.paraEsquema(veiculo));
     }
 
     @Override
@@ -64,7 +67,17 @@ public class RepositorioDeVeiculosImpl implements RepositorioDeVeiculos {
     @Override
     public Page<Veiculo> listar(int page, int size) {
         Page<VeiculoEsquema> veiculoPage = jpaRepository.findAll(org.springframework.data.domain.PageRequest.of(page, size));
-        return veiculoPage.map(veiculoSchema -> modelMapper.map(veiculoSchema, Veiculo.class));
+        return mapeadorDeVeiculo.paraEntidade(veiculoPage);
+    }
+
+    @Override
+    public int contaVeiculosAtivos() {
+        return jpaRepository.contaQuantidadeDeVeiculos();
+    }
+
+    @Override
+    public int contaVeiculosMensalistas() {
+        return jpaRepository.contaVeiculosMensalistas();
     }
 
 

@@ -3,6 +3,7 @@ package com.lucasramon.estacionamento.infra.seguranca.jwt;
 import java.util.Date;
 import java.time.Instant;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Jwts;
@@ -10,28 +11,29 @@ import io.jsonwebtoken.security.Keys;
 
 @Service
 public class ServicoDeJwtImpl implements ServicoDeJwt {
-
+    @Autowired
+    ConfiguracoesVariaviesJwt configuracoesVariaviesJwt;
 
     @Override
     public String gerarTokenDeAcesso(String nomeDeUsuario) {
-        return this.gerarToken(nomeDeUsuario, ConfiguracoesVariaviesJwt.segredoJwt,
-                ConfiguracoesVariaviesJwt.tempoExpiracaoJwt);
+        return this.gerarToken(nomeDeUsuario, configuracoesVariaviesJwt.getSegredoJwt(),
+                configuracoesVariaviesJwt.getTempoExpiracaoJwt());
     }
 
     @Override
     public String obterNomeDeUsuarioPeloTokenDeAcesso(String token) {
-        return this.obterNomeDeUsuarioPeloToken(token, ConfiguracoesVariaviesJwt.segredoJwt);
+        return this.obterNomeDeUsuarioPeloToken(token, configuracoesVariaviesJwt.getSegredoJwt());
     }
 
     @Override
     public String gerarTokenDeAtualizacao(String nomeDeUsuario) {
-        return this.gerarToken(nomeDeUsuario, ConfiguracoesVariaviesJwt.segredoAtualizacaoJwt,
-                ConfiguracoesVariaviesJwt.tempoExpiracaoAtualizacaoJwt);
+        return this.gerarToken(nomeDeUsuario, configuracoesVariaviesJwt.getSegredoAtualizacaoJwt(),
+                configuracoesVariaviesJwt.getTempoExpiracaoAtualizacaoJwt());
     }
 
     @Override
     public String obterNomeDeUsuarioPeloTokenDeAtualizcao(String token) {
-        return this.obterNomeDeUsuarioPeloToken(token, ConfiguracoesVariaviesJwt.segredoAtualizacaoJwt);
+        return this.obterNomeDeUsuarioPeloToken(token, configuracoesVariaviesJwt.getSegredoAtualizacaoJwt());
 
     }
 

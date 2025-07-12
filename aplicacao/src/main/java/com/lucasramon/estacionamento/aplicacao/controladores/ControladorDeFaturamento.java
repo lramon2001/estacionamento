@@ -1,0 +1,43 @@
+package com.lucasramon.estacionamento.aplicacao.controladores;
+
+import java.time.LocalDate;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.lucasramon.estacionamento.aplicacao.requisicoes.GerarPdfFaturamentoRequisicao;
+import com.lucasramon.estacionamento.aplicacao.servicos.ServicoDeFaturamento;
+import com.lucasramon.estacionamento.aplicacao.util.ConstantesDaAplicacao;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+
+
+
+@RestController
+@RequestMapping(ConstantesDaAplicacao.ROTA_FATURAMENTO)
+public class ControladorDeFaturamento {
+    
+    @Autowired
+    private ServicoDeFaturamento servicoDeFaturamento;
+   
+    @PostMapping(ConstantesDaAplicacao.ROTA_GERAR_PDF)
+    public ResponseEntity<byte[]> gerarPdf(@RequestBody GerarPdfFaturamentoRequisicao gerarPdfFaturamentoRequisicao) {
+
+        byte[] pdfContent = servicoDeFaturamento.gerarPdf(gerarPdfFaturamentoRequisicao.getInicio(), gerarPdfFaturamentoRequisicao.getFim());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add(ConstantesDaAplicacao.DISPOSICAO_DO_CONTEUDO, ConstantesDaAplicacao.ANEXO_NOME_ARQUIVO);
+
+        return ResponseEntity.ok()
+                .headers(headers)
+                .contentType(org.springframework.http.MediaType.APPLICATION_PDF)
+                .body(pdfContent);
+    }
+}

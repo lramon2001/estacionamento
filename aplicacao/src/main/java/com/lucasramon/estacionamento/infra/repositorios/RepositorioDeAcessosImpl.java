@@ -1,12 +1,18 @@
 package com.lucasramon.estacionamento.infra.repositorios;
 
 
+import java.time.LocalDate;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import com.lucasramon.estacionamento.dominio.entidades.acesso.Acesso;
+import com.lucasramon.estacionamento.dominio.entidades.acesso.TipoAcesso;
 import com.lucasramon.estacionamento.dominio.repositorios.RepositorioDeAcessos;
+import com.lucasramon.estacionamento.infra.esquemas.AcessoEsquema;
 import com.lucasramon.estacionamento.infra.mapeadores.MapeadorDeAcesso;
 import com.lucasramon.estacionamento.infra.repositorios.jpa.AcessoJpaRepositorio;
 
@@ -59,5 +65,22 @@ public class RepositorioDeAcessosImpl implements RepositorioDeAcessos {
         return mapeadorDeAcesso.paraEntidade(repositorioJpa.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Acesso não encontrado.")));
     }
+
+    @Override
+    public List<Acesso> obtemUltimosAcessos(Pageable pageable) {
+        return mapeadorDeAcesso.paraEntidades(this.repositorioJpa.obtemUltimosAcessos(pageable));
+    }
+
+    @Override
+    public int contaPorTipoAcesso(TipoAcesso tipoAcesso) {
+        return this.repositorioJpa.contaPorTipoAcesso(tipoAcesso);
+    }
+
+    @Override
+    public int contaPorTipoAcessoEdia(TipoAcesso tipoAcesso, LocalDate dia) {
+        return this.repositorioJpa.contaPorDiaETipoAcesso(dia, tipoAcesso);
+    }
+
+    
 
 }

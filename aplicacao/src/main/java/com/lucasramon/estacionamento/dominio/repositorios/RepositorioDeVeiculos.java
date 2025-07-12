@@ -7,4 +7,8 @@ public interface RepositorioDeVeiculos extends InterfaceDeRepositorio<Veiculo, S
 
     boolean veiculoExiste(String placa);
 
+    int contaVeiculosAtivos();
+
+    int contaVeiculosMensalistas();
+
 }

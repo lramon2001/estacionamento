@@ -21,7 +21,7 @@ import com.lucasramon.estacionamento.dominio.casos_de_uso.usuario.ListarUsuarios
 import com.lucasramon.estacionamento.dominio.casos_de_uso.usuario.VerificarSeExisteUsuarioCasoDeUso;
 import com.lucasramon.estacionamento.dominio.repositorios.RepositorioDeUsuarios;
 import com.lucasramon.estacionamento.dominio.util.Paginacao;
-
+import com.lucasramon.estacionamento.dominio.entidades.usuario.Usuario;
 @Service
 public class ServicoDeUsuario
         implements InterfaceDeServico<Long, UsuarioRequisicao, UsuarioResposta>, UserDetailsService {
@@ -135,7 +135,7 @@ public class ServicoDeUsuario
             try {
                 Usuario usuario = configuracoesDeUsuarioRaiz.novoUsuarioRaiz();
                 usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha()));
-                this.cadastrarUsuarioCasoDeUso.executar();
+                this.cadastrarUsuarioCasoDeUso.executar(usuario);
             } catch (Exception e) {
             e.printStackTrace();
             }
