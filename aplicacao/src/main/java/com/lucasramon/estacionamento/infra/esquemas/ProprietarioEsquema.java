@@ -40,6 +40,5 @@ public class ProprietarioEsquema {
         private String email;
 
         @Column(name = "data_nascimento")
-        @NotBlank
         private LocalDate dataNascimento;
 }

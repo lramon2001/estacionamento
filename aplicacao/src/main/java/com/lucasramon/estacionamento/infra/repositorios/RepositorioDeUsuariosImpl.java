@@ -95,7 +95,7 @@ public class RepositorioDeUsuariosImpl implements RepositorioDeUsuarios  {
         if (nomeDeUsuario == null || nomeDeUsuario.isEmpty()) {
             throw new IllegalArgumentException("Nome de usuário não pode ser vazio.");
         }
-        return mapeador.paraEntidade(jpaRepository.findByNomeDeUsuario(nomeDeUsuario)
+        return mapeador.paraEntidade(jpaRepository.findByNomeDeUsuario(nomeDeUsuario.trim())
                 .orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado com nome de usuário: " + nomeDeUsuario)));
     }
 

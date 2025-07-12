@@ -24,6 +24,6 @@ public class ProprietarioRequisicao {
     private String telefone;
     @Email
     private String email;
-    @NotBlank
+    
     private LocalDate dataNascimento;
 }
