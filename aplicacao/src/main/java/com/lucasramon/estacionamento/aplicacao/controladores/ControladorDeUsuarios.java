@@ -4,6 +4,9 @@ import com.lucasramon.estacionamento.aplicacao.requisicoes.UsuarioRequisicao;
 import com.lucasramon.estacionamento.aplicacao.respostas.UsuarioResposta;
 import com.lucasramon.estacionamento.aplicacao.servicos.ServicoDeUsuario;
 import com.lucasramon.estacionamento.aplicacao.util.ConstantesDaAplicacao;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.hateoas.Link;
@@ -33,7 +36,7 @@ public class ControladorDeUsuarios implements InterfaceDeControlador<Long, Usuar
 
     @Override
     @PostMapping(consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
-    public ResponseEntity<Void> cadastrar(@RequestBody UsuarioRequisicao usuarioRequisicao) {
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid UsuarioRequisicao usuarioRequisicao) {
         servicoDeUsuario.cadastrar(usuarioRequisicao);
         Link selfLink =  WebMvcLinkBuilder
                 .linkTo(WebMvcLinkBuilder.methodOn(ControladorDeUsuarios.class).buscarPorId(usuarioRequisicao.getId()))
@@ -43,7 +46,7 @@ public class ControladorDeUsuarios implements InterfaceDeControlador<Long, Usuar
 
     @Override
     @PutMapping(value = ConstantesDaAplicacao.ID_CAMINHO, consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
-    public ResponseEntity<UsuarioResposta> editar(@PathVariable(ConstantesDaAplicacao.ID_PARAMETRO) Long id, @RequestBody UsuarioRequisicao usuarioRequisicao) {
+    public ResponseEntity<UsuarioResposta> editar(@PathVariable(ConstantesDaAplicacao.ID_PARAMETRO) Long id, @RequestBody @Valid UsuarioRequisicao usuarioRequisicao) {
         usuarioRequisicao.setId(id);
         servicoDeUsuario.editar(usuarioRequisicao);
 

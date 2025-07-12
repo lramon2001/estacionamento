@@ -1,5 +1,7 @@
 package com.lucasramon.estacionamento.aplicacao.controladores;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.hateoas.Link;
@@ -35,7 +37,7 @@ public class ControladorDeVeiculos implements InterfaceDeControlador<String, Vei
     private ServicoDeVeiculos servicoDeVeiculos;
 
     @PostMapping(value = ConstantesDaAplicacao.ROTA_VEICULOS_MENSALISTAS, consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
-    public ResponseEntity<Void> cadastrarMensalista(@RequestBody VeiculoMensalistaRequisicao veiculoMensalista) {
+    public ResponseEntity<Void> cadastrarMensalista(@RequestBody @Valid VeiculoMensalistaRequisicao veiculoMensalista) {
         servicoDeVeiculos.cadastrar(veiculoMensalista);
 
         Link selfLink = WebMvcLinkBuilder
@@ -46,7 +48,7 @@ public class ControladorDeVeiculos implements InterfaceDeControlador<String, Vei
     }
 
     @PostMapping(value = ConstantesDaAplicacao.ROTA_VEICULOS_ROTATIVOS, consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
-    public ResponseEntity<Void> cadastrar(@RequestBody VeiculoRequisicao veiculo) {
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid VeiculoRequisicao veiculo) {
         servicoDeVeiculos.cadastrar(veiculo);
 
         Link selfLink = WebMvcLinkBuilder
@@ -63,7 +65,7 @@ public class ControladorDeVeiculos implements InterfaceDeControlador<String, Vei
     }
 
     @PutMapping(value = ConstantesDaAplicacao.ID_CAMINHO, consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
-    public ResponseEntity<VeiculoResposta> editar(@PathVariable(ConstantesDaAplicacao.ID_PARAMETRO) String id, @RequestBody VeiculoRequisicao veiculo) {
+    public ResponseEntity<VeiculoResposta> editar(@PathVariable(ConstantesDaAplicacao.ID_PARAMETRO) String id, @RequestBody @Valid VeiculoRequisicao veiculo) {
         veiculo.setPlaca(id);
         servicoDeVeiculos.editar(veiculo);
 

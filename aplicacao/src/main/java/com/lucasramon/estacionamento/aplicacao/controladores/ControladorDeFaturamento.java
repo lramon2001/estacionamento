@@ -14,6 +14,7 @@ import com.lucasramon.estacionamento.aplicacao.requisicoes.GerarPdfFaturamentoRe
 import com.lucasramon.estacionamento.aplicacao.servicos.ServicoDeFaturamento;
 import com.lucasramon.estacionamento.aplicacao.util.ConstantesDaAplicacao;
 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +31,7 @@ public class ControladorDeFaturamento {
     private ServicoDeFaturamento servicoDeFaturamento;
    
     @PostMapping(ConstantesDaAplicacao.ROTA_GERAR_PDF)
-    public ResponseEntity<byte[]> gerarPdf(@RequestBody GerarPdfFaturamentoRequisicao gerarPdfFaturamentoRequisicao) {
+    public ResponseEntity<byte[]> gerarPdf(@RequestBody @Valid GerarPdfFaturamentoRequisicao gerarPdfFaturamentoRequisicao) {
 
         byte[] pdfContent = servicoDeFaturamento.gerarPdf(gerarPdfFaturamentoRequisicao.getInicio(), gerarPdfFaturamentoRequisicao.getFim());
 

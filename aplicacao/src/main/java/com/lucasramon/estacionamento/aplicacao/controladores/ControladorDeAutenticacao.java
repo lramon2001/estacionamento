@@ -37,20 +37,20 @@ public class ControladorDeAutenticacao {
 
 
     @PostMapping(value = "/registrar",consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
-    public ResponseEntity<Void> registrar(@Valid @RequestBody UsuarioRequisicao dto) {
+    public ResponseEntity<Void> registrar(@RequestBody @Valid UsuarioRequisicao dto) {
         System.out.println(dto.toString());
         servicoDeUsuario.cadastrar(dto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping(value = "/entrar",consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
-    public ResponseEntity<TokenResposta> entrar(@Valid @RequestBody LoginRequisicao loginRequisicao) {
+    public ResponseEntity<TokenResposta> entrar(@RequestBody @Valid LoginRequisicao loginRequisicao) {
         
         return ResponseEntity.ok(this.servicoDeLogin.entrar(loginRequisicao));
     }
 
      @PostMapping(value = "/gerar-novo-token",consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
-    public ResponseEntity<TokenResposta> renovarToken(@Valid @RequestBody AtualizacaoTokenRequisicao loginRequisicao) {
+    public ResponseEntity<TokenResposta> renovarToken(@RequestBody @Valid AtualizacaoTokenRequisicao loginRequisicao) {
         
         return ResponseEntity.ok(this.servicoDeLogin.gerarNovoToken(loginRequisicao));
     }

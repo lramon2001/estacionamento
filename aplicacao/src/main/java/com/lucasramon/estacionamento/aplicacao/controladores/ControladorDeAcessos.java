@@ -2,6 +2,8 @@ package com.lucasramon.estacionamento.aplicacao.controladores;
 
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.hateoas.Link;
@@ -34,7 +36,7 @@ public class ControladorDeAcessos implements InterfaceDeControlador<Long, Acesso
     private SevicoDeAcessos servicoDeAcessos;
 
     @PostMapping(consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
-    public ResponseEntity<Void> cadastrar(@RequestBody AcessoRequisicao acesso) {
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid AcessoRequisicao acesso) {
         servicoDeAcessos.cadastrar(acesso);
         Link selfLink = WebMvcLinkBuilder
                 .linkTo(WebMvcLinkBuilder.methodOn(ControladorDeAcessos.class).buscarPorId(acesso.getId()))
@@ -62,7 +64,7 @@ public class ControladorDeAcessos implements InterfaceDeControlador<Long, Acesso
 
     @PutMapping(value = ConstantesDaAplicacao.ID_CAMINHO, consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
     public ResponseEntity<AcessoResposta> editar(@PathVariable(ConstantesDaAplicacao.ID_PARAMETRO) Long id,
-            @RequestBody AcessoRequisicao acessoRequisicao) {
+            @RequestBody @Valid AcessoRequisicao acessoRequisicao) {
         acessoRequisicao.setId(id);
         servicoDeAcessos.editar(acessoRequisicao);
 

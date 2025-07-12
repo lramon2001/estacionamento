@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,9 +28,11 @@ public class FaturamentoEsquema {
     private Integer id;
 
     @Column(name = "data", nullable = false)
+    @NotBlank
     private LocalDate data;
 
     @Column(name = "total_faturamento", nullable = false)
+    @NotBlank
     private double totalFaturamento;
     
 }

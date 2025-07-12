@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.lucasramon.estacionamento.dominio.entidades.acesso.TipoAcesso;
 
@@ -31,12 +32,15 @@ public class AcessoEsquema {
     private Long id;
 
     @Column(name = "data_hora", nullable = false)
+    @NotBlank
     private LocalDateTime dataHora;
 
     @Column(name = "placa_veiculo", length = 10, nullable = false)
+    @NotBlank
     private String placaVeiculo;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_acesso", nullable = false, length = 20)
+    @NotBlank
     private TipoAcesso tipoAcesso;
 }

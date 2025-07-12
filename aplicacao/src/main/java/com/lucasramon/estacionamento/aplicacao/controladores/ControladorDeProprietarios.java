@@ -1,5 +1,7 @@
 package com.lucasramon.estacionamento.aplicacao.controladores;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.hateoas.Link;
@@ -33,7 +35,7 @@ public class ControladorDeProprietarios implements InterfaceDeControlador<String
     private ServicoDeProprietarios servicoDeProprietarios;
 
     @PostMapping(consumes = ConstantesDaAplicacao.CONTEUDO_JSON, produces = ConstantesDaAplicacao.CONTEUDO_JSON)
-    public ResponseEntity<Void> cadastrar(@RequestBody ProprietarioRequisicao proprietarioRequisicao) {
+    public ResponseEntity<Void> cadastrar(@RequestBody @Valid ProprietarioRequisicao proprietarioRequisicao) {
         servicoDeProprietarios.cadastrar(proprietarioRequisicao);
 
         Link selfLink = WebMvcLinkBuilder

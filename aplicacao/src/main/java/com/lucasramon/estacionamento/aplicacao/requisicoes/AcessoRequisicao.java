@@ -2,6 +2,8 @@ package com.lucasramon.estacionamento.aplicacao.requisicoes;
 
 import java.time.LocalDateTime;
 
+import javax.validation.constraints.NotBlank;
+
 import com.lucasramon.estacionamento.dominio.entidades.acesso.TipoAcesso;
 
 import lombok.AllArgsConstructor;
@@ -15,7 +17,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AcessoRequisicao {
     Long id;
+    @NotBlank
     LocalDateTime dataHora;
+    @NotBlank
     String placaVeiculo;
+    @NotBlank
     TipoAcesso tipoAcesso;
 }
