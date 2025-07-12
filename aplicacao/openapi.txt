@@ -1,0 +1,1434 @@
+{
+openapi: "3.0.1",
+info: {
+title: "OpenAPI definition",
+version: "v0"
+},
+servers: [
+{
+url: "http://89.116.186.224:9093",
+description: "Generated server url"
+}
+],
+security: [
+{
+bearerAuth: [ ]
+}
+],
+paths: {
+/veiculos/{id}: {
+get: {
+tags: [
+"controlador-de-veiculos"
+],
+operationId: "buscarPorId",
+parameters: [
+{
+name: "id",
+in: "path",
+required: true,
+schema: {
+type: "string"
+}
+}
+],
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/VeiculoResposta"
+}
+}
+}
+}
+}
+},
+put: {
+tags: [
+"controlador-de-veiculos"
+],
+operationId: "editar",
+parameters: [
+{
+name: "id",
+in: "path",
+required: true,
+schema: {
+type: "string"
+}
+}
+],
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/VeiculoRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/VeiculoResposta"
+}
+}
+}
+}
+}
+}
+},
+/usuarios/{id}: {
+get: {
+tags: [
+"controlador-de-usuarios"
+],
+operationId: "buscarPorId_1",
+parameters: [
+{
+name: "id",
+in: "path",
+required: true,
+schema: {
+type: "integer",
+format: "int64"
+}
+}
+],
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/UsuarioResposta"
+}
+}
+}
+}
+}
+},
+put: {
+tags: [
+"controlador-de-usuarios"
+],
+operationId: "editar_1",
+parameters: [
+{
+name: "id",
+in: "path",
+required: true,
+schema: {
+type: "integer",
+format: "int64"
+}
+}
+],
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/UsuarioRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/UsuarioResposta"
+}
+}
+}
+}
+}
+}
+},
+/proprietarios/{id}: {
+get: {
+tags: [
+"controlador-de-proprietarios"
+],
+operationId: "buscarPorId_2",
+parameters: [
+{
+name: "id",
+in: "path",
+required: true,
+schema: {
+type: "string"
+}
+}
+],
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/ProprietarioResposta"
+}
+}
+}
+}
+}
+},
+put: {
+tags: [
+"controlador-de-proprietarios"
+],
+operationId: "editar_2",
+parameters: [
+{
+name: "id",
+in: "path",
+required: true,
+schema: {
+type: "string"
+}
+}
+],
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/ProprietarioRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/ProprietarioResposta"
+}
+}
+}
+}
+}
+}
+},
+/acessos/{id}: {
+get: {
+tags: [
+"controlador-de-acessos"
+],
+operationId: "buscarPorId_3",
+parameters: [
+{
+name: "id",
+in: "path",
+required: true,
+schema: {
+type: "integer",
+format: "int64"
+}
+}
+],
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/AcessoResposta"
+}
+}
+}
+}
+}
+},
+put: {
+tags: [
+"controlador-de-acessos"
+],
+operationId: "editar_3",
+parameters: [
+{
+name: "id",
+in: "path",
+required: true,
+schema: {
+type: "integer",
+format: "int64"
+}
+}
+],
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/AcessoRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/AcessoResposta"
+}
+}
+}
+}
+}
+}
+},
+/veiculos/rotativos: {
+post: {
+tags: [
+"controlador-de-veiculos"
+],
+operationId: "cadastrar",
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/VeiculoRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK"
+}
+}
+}
+},
+/veiculos/mensalistas: {
+post: {
+tags: [
+"controlador-de-veiculos"
+],
+operationId: "cadastrarMensalista",
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/VeiculoMensalistaRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK"
+}
+}
+}
+},
+/usuarios: {
+get: {
+tags: [
+"controlador-de-usuarios"
+],
+operationId: "listar_1",
+parameters: [
+{
+name: "pagina",
+in: "query",
+required: true,
+schema: {
+type: "integer",
+format: "int32"
+}
+},
+{
+name: "tamanho",
+in: "query",
+required: true,
+schema: {
+type: "integer",
+format: "int32"
+}
+}
+],
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/PageUsuarioResposta"
+}
+}
+}
+}
+}
+},
+post: {
+tags: [
+"controlador-de-usuarios"
+],
+operationId: "cadastrar_1",
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/UsuarioRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK"
+}
+}
+},
+delete: {
+tags: [
+"controlador-de-usuarios"
+],
+operationId: "excluir_1",
+parameters: [
+{
+name: "id",
+in: "query",
+required: true,
+schema: {
+type: "integer",
+format: "int64"
+}
+}
+],
+responses: {
+200: {
+description: "OK"
+}
+}
+}
+},
+/proprietarios: {
+get: {
+tags: [
+"controlador-de-proprietarios"
+],
+operationId: "listar_2",
+parameters: [
+{
+name: "pagina",
+in: "query",
+required: true,
+schema: {
+type: "integer",
+format: "int32"
+}
+},
+{
+name: "tamanho",
+in: "query",
+required: true,
+schema: {
+type: "integer",
+format: "int32"
+}
+}
+],
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/PageProprietarioResposta"
+}
+}
+}
+}
+}
+},
+post: {
+tags: [
+"controlador-de-proprietarios"
+],
+operationId: "cadastrar_2",
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/ProprietarioRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK"
+}
+}
+},
+delete: {
+tags: [
+"controlador-de-proprietarios"
+],
+operationId: "excluir_2",
+parameters: [
+{
+name: "cpf",
+in: "query",
+required: true,
+schema: {
+type: "string"
+}
+}
+],
+responses: {
+200: {
+description: "OK"
+}
+}
+}
+},
+/faturamento/gerar-pdf: {
+post: {
+tags: [
+"controlador-de-faturamento"
+],
+operationId: "gerarPdf",
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/GerarPdfFaturamentoRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK",
+content: {
+*/*: {
+schema: {
+type: "array",
+items: {
+type: "string",
+format: "byte"
+}
+}
+}
+}
+}
+}
+}
+},
+/autenticacao/registrar: {
+post: {
+tags: [
+"controlador-de-autenticacao"
+],
+operationId: "registrar",
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/UsuarioRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK"
+}
+}
+}
+},
+/autenticacao/gerar-novo-token: {
+post: {
+tags: [
+"controlador-de-autenticacao"
+],
+operationId: "renovarToken",
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/AtualizacaoTokenRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/TokenResposta"
+}
+}
+}
+}
+}
+}
+},
+/autenticacao/entrar: {
+post: {
+tags: [
+"controlador-de-autenticacao"
+],
+operationId: "entrar",
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/LoginRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/TokenResposta"
+}
+}
+}
+}
+}
+}
+},
+/acessos: {
+get: {
+tags: [
+"controlador-de-acessos"
+],
+operationId: "listar_3",
+parameters: [
+{
+name: "pagina",
+in: "query",
+required: true,
+schema: {
+type: "integer",
+format: "int32"
+}
+},
+{
+name: "tamanho",
+in: "query",
+required: true,
+schema: {
+type: "integer",
+format: "int32"
+}
+}
+],
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/PageAcessoResposta"
+}
+}
+}
+}
+}
+},
+post: {
+tags: [
+"controlador-de-acessos"
+],
+operationId: "cadastrar_3",
+requestBody: {
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/AcessoRequisicao"
+}
+}
+},
+required: true
+},
+responses: {
+200: {
+description: "OK"
+}
+}
+},
+delete: {
+tags: [
+"controlador-de-acessos"
+],
+operationId: "excluir_3",
+parameters: [
+{
+name: "id",
+in: "query",
+required: true,
+schema: {
+type: "integer",
+format: "int64"
+}
+}
+],
+responses: {
+200: {
+description: "OK"
+}
+}
+}
+},
+/veiculos: {
+get: {
+tags: [
+"controlador-de-veiculos"
+],
+operationId: "listar",
+parameters: [
+{
+name: "pagina",
+in: "query",
+required: true,
+schema: {
+type: "integer",
+format: "int32"
+}
+},
+{
+name: "tamanho",
+in: "query",
+required: true,
+schema: {
+type: "integer",
+format: "int32"
+}
+}
+],
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/PageVeiculoResposta"
+}
+}
+}
+}
+}
+},
+delete: {
+tags: [
+"controlador-de-veiculos"
+],
+operationId: "excluir",
+parameters: [
+{
+name: "id",
+in: "query",
+required: true,
+schema: {
+type: "string"
+}
+}
+],
+responses: {
+200: {
+description: "OK"
+}
+}
+}
+},
+/painel: {
+get: {
+tags: [
+"controlador-do-painel"
+],
+operationId: "buscaDadosPainel",
+responses: {
+200: {
+description: "OK",
+content: {
+application/json: {
+schema: {
+$ref: "#/components/schemas/PainelResposta"
+}
+}
+}
+}
+}
+}
+},
+/: {
+get: {
+tags: [
+"controlador-raiz"
+],
+operationId: "raiz",
+responses: {
+200: {
+description: "OK",
+content: {
+*/*: {
+schema: {
+type: "string"
+}
+}
+}
+}
+}
+}
+}
+},
+components: {
+schemas: {
+VeiculoRequisicao: {
+required: [
+"cor",
+"modelo",
+"placa"
+],
+type: "object",
+properties: {
+placa: {
+type: "string"
+},
+modelo: {
+type: "string"
+},
+cor: {
+type: "string"
+}
+}
+},
+Link: {
+type: "object",
+properties: {
+rel: {
+type: "string"
+},
+href: {
+type: "string"
+},
+hreflang: {
+type: "string"
+},
+media: {
+type: "string"
+},
+title: {
+type: "string"
+},
+type: {
+type: "string"
+},
+deprecation: {
+type: "string"
+},
+profile: {
+type: "string"
+},
+name: {
+type: "string"
+}
+}
+},
+VeiculoResposta: {
+type: "object",
+properties: {
+placa: {
+type: "string"
+},
+modelo: {
+type: "string"
+},
+cor: {
+type: "string"
+},
+cpfProprietario: {
+type: "string"
+},
+links: {
+type: "array",
+items: {
+$ref: "#/components/schemas/Link"
+}
+}
+}
+},
+UsuarioRequisicao: {
+required: [
+"email",
+"nomeDeUsuario",
+"regra",
+"senha"
+],
+type: "object",
+properties: {
+id: {
+type: "integer",
+format: "int64"
+},
+nomeDeUsuario: {
+type: "string"
+},
+senha: {
+type: "string"
+},
+email: {
+type: "string"
+},
+regra: {
+type: "string",
+enum: [
+"COMUM",
+"ADMINISTRADOR"
+]
+}
+}
+},
+UsuarioResposta: {
+type: "object",
+properties: {
+id: {
+type: "integer",
+format: "int64"
+},
+nomeDeUsuario: {
+type: "string"
+},
+token: {
+type: "string"
+},
+email: {
+type: "string"
+},
+regra: {
+type: "string",
+enum: [
+"COMUM",
+"ADMINISTRADOR"
+]
+},
+links: {
+type: "array",
+items: {
+$ref: "#/components/schemas/Link"
+}
+}
+}
+},
+ProprietarioRequisicao: {
+required: [
+"dataNascimento",
+"nome"
+],
+type: "object",
+properties: {
+nome: {
+type: "string"
+},
+cpf: {
+pattern: "^\d{3}\.\d{3}\.\d{3}-\d{2}$|^\d{11}$",
+type: "string"
+},
+telefone: {
+pattern: "^\(\d{2}\) \d{4,5}-\d{4}$",
+type: "string"
+},
+email: {
+type: "string"
+},
+dataNascimento: {
+type: "string",
+format: "date"
+}
+}
+},
+ProprietarioResposta: {
+type: "object",
+properties: {
+nome: {
+type: "string"
+},
+cpf: {
+type: "string"
+},
+telefone: {
+type: "string"
+},
+email: {
+type: "string"
+},
+dataNascimento: {
+type: "string",
+format: "date"
+},
+links: {
+type: "array",
+items: {
+$ref: "#/components/schemas/Link"
+}
+}
+}
+},
+AcessoRequisicao: {
+required: [
+"dataHora",
+"placaVeiculo"
+],
+type: "object",
+properties: {
+id: {
+type: "integer",
+format: "int64"
+},
+dataHora: {
+type: "string",
+format: "date-time"
+},
+placaVeiculo: {
+type: "string"
+},
+tipoAcesso: {
+type: "string",
+enum: [
+"ENTRADA",
+"SAIDA"
+]
+}
+}
+},
+AcessoResposta: {
+type: "object",
+properties: {
+id: {
+type: "integer",
+format: "int64"
+},
+dataHora: {
+type: "string",
+format: "date-time"
+},
+placaVeiculo: {
+type: "string"
+},
+tipoAcesso: {
+type: "string",
+enum: [
+"ENTRADA",
+"SAIDA"
+]
+},
+links: {
+type: "array",
+items: {
+$ref: "#/components/schemas/Link"
+}
+}
+}
+},
+VeiculoMensalistaRequisicao: {
+required: [
+"cor",
+"modelo",
+"placa"
+],
+type: "object",
+properties: {
+placa: {
+type: "string"
+},
+modelo: {
+type: "string"
+},
+cor: {
+type: "string"
+},
+cpfProprietario: {
+pattern: "^\d{3}\.\d{3}\.\d{3}-\d{2}$|^\d{11}$",
+type: "string"
+}
+}
+},
+GerarPdfFaturamentoRequisicao: {
+required: [
+"fim",
+"inicio"
+],
+type: "object",
+properties: {
+inicio: {
+type: "string",
+format: "date"
+},
+fim: {
+type: "string",
+format: "date"
+}
+}
+},
+AtualizacaoTokenRequisicao: {
+required: [
+"tokenAtualizacao"
+],
+type: "object",
+properties: {
+tokenAtualizacao: {
+type: "string"
+}
+}
+},
+TokenResposta: {
+type: "object",
+properties: {
+token: {
+type: "string"
+},
+tokenAtualização: {
+type: "string"
+}
+}
+},
+LoginRequisicao: {
+required: [
+"nome",
+"senha"
+],
+type: "object",
+properties: {
+nome: {
+type: "string"
+},
+senha: {
+type: "string"
+}
+}
+},
+PageVeiculoResposta: {
+type: "object",
+properties: {
+totalPages: {
+type: "integer",
+format: "int32"
+},
+totalElements: {
+type: "integer",
+format: "int64"
+},
+first: {
+type: "boolean"
+},
+last: {
+type: "boolean"
+},
+numberOfElements: {
+type: "integer",
+format: "int32"
+},
+pageable: {
+$ref: "#/components/schemas/PageableObject"
+},
+sort: {
+$ref: "#/components/schemas/SortObject"
+},
+size: {
+type: "integer",
+format: "int32"
+},
+content: {
+type: "array",
+items: {
+$ref: "#/components/schemas/VeiculoResposta"
+}
+},
+number: {
+type: "integer",
+format: "int32"
+},
+empty: {
+type: "boolean"
+}
+}
+},
+PageableObject: {
+type: "object",
+properties: {
+paged: {
+type: "boolean"
+},
+unpaged: {
+type: "boolean"
+},
+pageNumber: {
+type: "integer",
+format: "int32"
+},
+pageSize: {
+type: "integer",
+format: "int32"
+},
+sort: {
+$ref: "#/components/schemas/SortObject"
+},
+offset: {
+type: "integer",
+format: "int64"
+}
+}
+},
+SortObject: {
+type: "object",
+properties: {
+unsorted: {
+type: "boolean"
+},
+sorted: {
+type: "boolean"
+},
+empty: {
+type: "boolean"
+}
+}
+},
+PageUsuarioResposta: {
+type: "object",
+properties: {
+totalPages: {
+type: "integer",
+format: "int32"
+},
+totalElements: {
+type: "integer",
+format: "int64"
+},
+first: {
+type: "boolean"
+},
+last: {
+type: "boolean"
+},
+numberOfElements: {
+type: "integer",
+format: "int32"
+},
+pageable: {
+$ref: "#/components/schemas/PageableObject"
+},
+sort: {
+$ref: "#/components/schemas/SortObject"
+},
+size: {
+type: "integer",
+format: "int32"
+},
+content: {
+type: "array",
+items: {
+$ref: "#/components/schemas/UsuarioResposta"
+}
+},
+number: {
+type: "integer",
+format: "int32"
+},
+empty: {
+type: "boolean"
+}
+}
+},
+PageProprietarioResposta: {
+type: "object",
+properties: {
+totalPages: {
+type: "integer",
+format: "int32"
+},
+totalElements: {
+type: "integer",
+format: "int64"
+},
+first: {
+type: "boolean"
+},
+last: {
+type: "boolean"
+},
+numberOfElements: {
+type: "integer",
+format: "int32"
+},
+pageable: {
+$ref: "#/components/schemas/PageableObject"
+},
+sort: {
+$ref: "#/components/schemas/SortObject"
+},
+size: {
+type: "integer",
+format: "int32"
+},
+content: {
+type: "array",
+items: {
+$ref: "#/components/schemas/ProprietarioResposta"
+}
+},
+number: {
+type: "integer",
+format: "int32"
+},
+empty: {
+type: "boolean"
+}
+}
+},
+Acesso: {
+type: "object",
+properties: {
+id: {
+type: "integer",
+format: "int64"
+},
+dataHora: {
+type: "string",
+format: "date-time"
+},
+placaVeiculo: {
+type: "string"
+},
+tipoAcesso: {
+type: "string",
+enum: [
+"ENTRADA",
+"SAIDA"
+]
+}
+}
+},
+PainelResposta: {
+type: "object",
+properties: {
+ultimosAcessos: {
+type: "array",
+items: {
+$ref: "#/components/schemas/Acesso"
+}
+},
+vagasDisponiveis: {
+type: "integer",
+format: "int32"
+},
+vagasOcupadas: {
+type: "integer",
+format: "int32"
+},
+totalDeVagas: {
+type: "integer",
+format: "int32"
+},
+veiculosAtivos: {
+type: "integer",
+format: "int32"
+},
+quantidadeDeMensalistas: {
+type: "integer",
+format: "int32"
+},
+numeroDeEntradasHoje: {
+type: "integer",
+format: "int32"
+},
+numeroDeSaidasHoje: {
+type: "integer",
+format: "int32"
+},
+links: {
+type: "array",
+items: {
+$ref: "#/components/schemas/Link"
+}
+}
+}
+},
+PageAcessoResposta: {
+type: "object",
+properties: {
+totalPages: {
+type: "integer",
+format: "int32"
+},
+totalElements: {
+type: "integer",
+format: "int64"
+},
+first: {
+type: "boolean"
+},
+last: {
+type: "boolean"
+},
+numberOfElements: {
+type: "integer",
+format: "int32"
+},
+pageable: {
+$ref: "#/components/schemas/PageableObject"
+},
+sort: {
+$ref: "#/components/schemas/SortObject"
+},
+size: {
+type: "integer",
+format: "int32"
+},
+content: {
+type: "array",
+items: {
+$ref: "#/components/schemas/AcessoResposta"
+}
+},
+number: {
+type: "integer",
+format: "int32"
+},
+empty: {
+type: "boolean"
+}
+}
+}
+},
+securitySchemes: {
+bearerAuth: {
+type: "http",
+scheme: "bearer",
+bearerFormat: "JWT"
+}
+}
+}
+}
