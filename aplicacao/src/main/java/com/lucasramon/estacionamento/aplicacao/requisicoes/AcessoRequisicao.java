@@ -21,6 +21,6 @@ public class AcessoRequisicao {
     LocalDateTime dataHora;
     @NotBlank
     String placaVeiculo;
-    @NotBlank
+    
     TipoAcesso tipoAcesso;
 }

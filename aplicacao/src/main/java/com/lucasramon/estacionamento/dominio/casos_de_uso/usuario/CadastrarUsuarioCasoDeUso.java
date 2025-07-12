@@ -13,7 +13,6 @@ public class CadastrarUsuarioCasoDeUso implements InterfaceDeCasoDeUso<Usuario,V
     }
     @Override
     public Void executar(Usuario input) throws Exception { 
-        System.out.println(input.toString());
         repositorioDeUsuarios.criar(input);
         return null;
     }

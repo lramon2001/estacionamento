@@ -44,6 +44,5 @@ public class UsuarioEsquema {
 
     @Column(name = "regra", nullable = false)
     @Enumerated(EnumType.STRING)
-    @NotBlank
     Regra regra;
 }

@@ -41,6 +41,5 @@ public class AcessoEsquema {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_acesso", nullable = false, length = 20)
-    @NotBlank
     private TipoAcesso tipoAcesso;
 }
