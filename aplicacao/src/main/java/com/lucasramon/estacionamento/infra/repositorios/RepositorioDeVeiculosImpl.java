@@ -1,6 +1,5 @@
 package com.lucasramon.estacionamento.infra.repositorios;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Repository;
@@ -78,6 +77,11 @@ public class RepositorioDeVeiculosImpl implements RepositorioDeVeiculos {
     @Override
     public int contaVeiculosMensalistas() {
         return jpaRepository.contaVeiculosMensalistas();
+    }
+
+    @Override
+    public boolean ehVeiculoMensalista(String placa) {
+       return this.jpaRepository.existsByPlacaAndCpfProprietarioIsNotNull(placa);
     }
 
 

@@ -17,4 +17,7 @@ public interface RepositorioDeAcessos extends InterfaceDeRepositorio<Acesso, Lon
 
     int contaPorTipoAcessoEdia(TipoAcesso tipoAcesso,LocalDate dia);
 
+    List<Acesso> obtemAcessosPorDia(LocalDate dia);
+
+
 }

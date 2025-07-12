@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 import com.lucasramon.estacionamento.dominio.entidades.acesso.Acesso;
 import com.lucasramon.estacionamento.dominio.entidades.acesso.TipoAcesso;
 import com.lucasramon.estacionamento.dominio.repositorios.RepositorioDeAcessos;
-import com.lucasramon.estacionamento.infra.esquemas.AcessoEsquema;
 import com.lucasramon.estacionamento.infra.mapeadores.MapeadorDeAcesso;
 import com.lucasramon.estacionamento.infra.repositorios.jpa.AcessoJpaRepositorio;
 
@@ -79,6 +78,11 @@ public class RepositorioDeAcessosImpl implements RepositorioDeAcessos {
     @Override
     public int contaPorTipoAcessoEdia(TipoAcesso tipoAcesso, LocalDate dia) {
         return this.repositorioJpa.contaPorDiaETipoAcesso(dia, tipoAcesso);
+    }
+
+    @Override
+    public List<Acesso> obtemAcessosPorDia(LocalDate dia) {
+       return this.mapeadorDeAcesso.paraEntidades(repositorioJpa.obtemAcessosPorDia(dia));
     }
 
     

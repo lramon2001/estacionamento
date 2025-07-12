@@ -13,4 +13,7 @@ public interface VeiculoJpaRepositorio extends JpaRepository<VeiculoEsquema, Str
 
 	@Query("SELECT COUNT(v) FROM VeiculoEsquema v WHERE v.cpfProprietario IS NOT NULL")
 	int contaVeiculosMensalistas();
+
+	boolean existsByPlacaAndCpfProprietarioIsNotNull(String placa);
+
 }

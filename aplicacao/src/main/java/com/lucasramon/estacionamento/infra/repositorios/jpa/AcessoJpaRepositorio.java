@@ -24,4 +24,8 @@ public interface AcessoJpaRepositorio extends JpaRepository<AcessoEsquema, Long>
     @Query("SELECT COUNT(a) FROM AcessoEsquema a WHERE a.tipoAcesso = :tipoAcesso")
     int contaPorTipoAcesso(@Param("tipoAcesso") TipoAcesso tipoAcesso);
 
+    
+    @Query("SELECT a FROM AcessoEsquema a WHERE DATE(a.dataHora) = :dia")
+    List<AcessoEsquema> obtemAcessosPorDia(@Param("dia") LocalDate dia);
+
 }

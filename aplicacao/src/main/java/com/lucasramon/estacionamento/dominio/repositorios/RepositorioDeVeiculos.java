@@ -11,4 +11,7 @@ public interface RepositorioDeVeiculos extends InterfaceDeRepositorio<Veiculo, S
 
     int contaVeiculosMensalistas();
 
+    boolean ehVeiculoMensalista(String placa);
+
+
 }
