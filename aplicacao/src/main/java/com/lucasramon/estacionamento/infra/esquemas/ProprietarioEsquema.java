@@ -31,8 +31,8 @@ public class ProprietarioEsquema {
         @NotBlank
         private String nome;
 
+        @NotBlank
         @Column(name = "telefone", length = 20)
-        @Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$", message = "Telefone inválido")
         private String telefone;
 
         @Column(name = "email", length = 120)

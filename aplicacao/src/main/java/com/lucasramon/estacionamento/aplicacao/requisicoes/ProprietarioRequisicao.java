@@ -18,9 +18,9 @@ import lombok.NoArgsConstructor;
 public class ProprietarioRequisicao {
     @NotBlank
     private String nome;
-    @Pattern(regexp = "^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$|^\\d{11}$", message = "CPF inválido")
+    @NotBlank
     private String cpf;
-    @Pattern(regexp = "^\\(\\d{2}\\) \\d{4,5}-\\d{4}$", message = "Telefone inválido")
+    @NotBlank
     private String telefone;
     @Email
     private String email;
